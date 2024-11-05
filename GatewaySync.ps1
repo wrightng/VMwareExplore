@@ -268,7 +268,7 @@ foreach ($GWFW_T1 in $GWFW_T1s){
                 $RuleDetails = $RuleDetails | Select-Object -Property * -ExcludeProperty sources_excluded
                 $Negated = $true
             }
-            if ($Negated -eq $true -and $($Rule.action) -eq "DROP"){
+            if ($Negated -eq $true -and $($Rule.action) -ne "ALLOW"){
                 # Not adding the rule as it would drop traffic with a source or dest of ANY
                 write-host "Warning - Rule $($Ruledetails.display_name) from policy section $() dropped as it would result in a drop with ANY as source or destination" -foreground DarkYellow
             } else {

@@ -9,6 +9,7 @@ Additionally as the gateway firewall does not supprt "negated" source or destina
 Clone the repository to a folder on a Windows machine, terraform must have been installed previously and be in the PATH environment variable and internet access needs to be available for initialisation of the terraform provider.  
 
 Windows Powershell is not supprted due to certificate handling issues.  
+The powershell module "Poshstache" is required for moustache functionality
 
 Create a powershell credential object i.e. $Creds = Get-Credential  
 

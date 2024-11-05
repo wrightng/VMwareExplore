@@ -27,8 +27,10 @@ GatewaySync.ps1 -NSXT labnst01.lab.com -Credentials $Creds
 #>
 Param(
     [STRING]$NSXT = "labnst01.lab.com",
+    [Parameter(mandatory=$true)]
     [PSCredential]$Credentials
 )
+#Requires -Modules Poshstache
 
 # First test that it is possible to log into the NSX manager with defined credentials
 try {
@@ -299,9 +301,9 @@ foreach ($GWFW_T1 in $GWFW_T1s){
     if ($Null -ne $Mapping){
         $TFFile = get-content "$TerraformFolder\$GWName.tf"
         foreach($Key in $Mapping.Keys){
-            $SourceService = $AllServices | where {$_.display_name -eq $Key}
+            $SourceService = $AllServices | Where-Object {$_.display_name -eq $Key}
             $SourcePath = $SourceService.path
-            $MappedService = $AllServices | where {$_.display_name -eq $($Mapping.$Key)}
+            $MappedService = $AllServices | Where-Object {$_.display_name -eq $($Mapping.$Key)}
             $MappedPath = $MappedService.path
             if($Null -ne $MappedPath -and $Null -ne $SourcePath){
                 $TFFile = $TFFile -replace $SourcePath,$MappedPath

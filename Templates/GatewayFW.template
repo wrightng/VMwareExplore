@@ -1,0 +1,38 @@
+
+{{#Gateways}}
+resource "nsxt_policy_gateway_policy" "{{GWName}}_{{ResourceName}}" {
+  display_name    = "{{Name}}"
+  description     = "Terraform provisioned Gateway Policy"
+  category        = "LocalGatewayRules"
+  locked          = false
+  sequence_number = {{Seq}}
+  stateful        = true
+  tcp_strict      = false
+    
+  {{#rules}}
+  rule {
+    display_name       = "{{display_name}}"
+    {{#destination_groups}}
+    destination_groups = ["{{{destination_groups}}}"]
+    destinations_excluded = {{destinations_excluded}}
+    {{/destination_groups}}
+    disabled              = {{disabled}}
+    logged                = {{logged}}
+    notes                 = "{{notes}}"
+    {{#profiles}}
+    profiles              = ["{{{profiles}}}"]
+    {{/profiles}}
+    {{#services}}
+    services              = ["{{{services}}}"]
+    {{/services}}
+    {{#source_groups}}
+    source_groups         = ["{{{source_groups}}}"]
+    sources_excluded      = {{sources_excluded}}
+    {{/source_groups}}
+    log_label             = "{{log_label}}"
+    action                = "{{action}}"
+    scope                 = ["{{{scope}}}"]
+  }
+  {{/rules}}
+}
+{{/Gateways}}

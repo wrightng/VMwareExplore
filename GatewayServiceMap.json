@@ -1,0 +1,8 @@
+{
+  "Microsoft Active Directory V1": "Microsoft Active Directory V2",
+  "MS_RPC_TCP": "MS_RPC_TCPv2",
+  "MS_RPC_UDP": "MS_RPC_UDPv2",
+  "SUN_RPC_TCP": "SUN_RPC_TCPv2",
+  "SUN_RPC_UDP": "SUN_RPC_UDPv2",
+  "ORACLE_TNS": "ORACLE_TNSv2"
+}

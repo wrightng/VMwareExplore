@@ -205,10 +205,10 @@ remove-item "$TerraformFolder\*.tf" -force | out-null
 copy-item -Path "$location\Templates\main.tf" -Destination $TerraformFolder
 copy-item -Path "$location\Templates\variables.tf" -Destination $TerraformFolder
 
-# Define terraform file for each Gateway firewall
 foreach ($GWFW_T1 in $GWFW_T1s){
     $scope = $GWFW_T1.path
     $GWName = $GWFW_T1.display_name
+
     $GatewayList = New-Object -TypeName "System.Collections.ArrayList"
     foreach ($GatewayPolicy in $GWPolicies){
         if($($GatewayPolicy.category) -eq "Emergency"){
@@ -281,7 +281,7 @@ foreach ($GWFW_T1 in $GWFW_T1s){
             [STRING]$newSeq = 999999
         } else {
             [STRING]$newSeq = $Seq + $($GatewayPolicy.sequence_number)
-        }   
+        }
         if($GatewayRules.count -ne 0){
             $ResourceName = $($GatewayPolicy.display_name) -replace '[^a-zA-Z0-9]','' # Need to keep resource names terraform compatible
             $RuleHash.Add("rules",$GatewayRules)
